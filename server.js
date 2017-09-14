@@ -5,7 +5,9 @@ const login=require('./routes/login');
 const registration=require('./routes/registration');
 const forgetPassword=require('./routes/forgetPassword');
 const bodyParser=require('body-parser');
-
+const session =require('express-session');
+const expressValidator=require('express-validator');
+const flash=require('connect-flash');
 
 const port =8000;
 
@@ -15,9 +17,25 @@ app.use('/js',express.static(__dirname+'/asset/js'));
 app.use('/css',express.static(__dirname+'/asset/css'));
 app.use('/images',express.static(__dirname+'/asset/images'));
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
 app.post('/login',urlencodedParser,(request,respond)=>{
 	const user=request.body;
 	console.log(user.username);
+});
+app.post('/registration',urlencodedParser,(request,respond)=>{
+
 });
 
 app.set('views',path.join(__dirname,'views'));

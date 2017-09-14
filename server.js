@@ -4,8 +4,12 @@ const path=require('path');
 const login=require('./routes/login');
 const registration=require('./routes/registration');
 const forgetPassword=require('./routes/forgetPassword');
+const bodyParser=require('body-parser');
+
 
 const port =8000;
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use('/js',express.static(__dirname+'/asset/js'));
 app.use('/css',express.static(__dirname+'/asset/css'));

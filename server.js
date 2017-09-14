@@ -3,6 +3,7 @@ const app=express();
 const path=require('path');
 const login=require('./routes/login');
 const registration=require('./routes/registration');
+const forgetPassword=require('./routes/forgetPassword');
 
 const port =8000;
 
@@ -15,7 +16,7 @@ app.set('view engine','ejs');
 
 app.use('/',login);
 app.use('/registration',registration);
-
+app.use('/forgetPassword',forgetPassword);
 
 app.listen(port,()=>{
 	console.log('Server running at port :'+port);

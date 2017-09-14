@@ -15,6 +15,11 @@ app.use('/js',express.static(__dirname+'/asset/js'));
 app.use('/css',express.static(__dirname+'/asset/css'));
 app.use('/images',express.static(__dirname+'/asset/images'));
 
+app.post('/login',urlencodedParser,(request,respond)=>{
+	const user=request.body;
+	console.log(user.username);
+});
+
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 

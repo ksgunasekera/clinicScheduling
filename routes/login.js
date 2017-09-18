@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 
 router.get('/',(request,respond)=>{
-	respond.render('login',{error:false,message:""});
+	respond.render('login',{error:false});
 });
 router.post('/login',(request,respond)=>{
 	const data=request.body;

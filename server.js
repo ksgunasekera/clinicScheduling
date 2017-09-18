@@ -11,11 +11,15 @@ const flash=require('connect-flash');
 
 const port =8000;
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/js',express.static(__dirname+'/asset/js'));
 app.use('/css',express.static(__dirname+'/asset/css'));
 app.use('/images',express.static(__dirname+'/asset/images'));
+
+app.use(expressValidator());
+//app.use(session());
+app.use(bodyParser.json());
 
 app.use(session({
   secret: 'keyboard cat',
@@ -30,13 +34,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/login',urlencodedParser,(request,respond)=>{
-	const user=request.body;
-	console.log(user.username);
-});
-app.post('/registration',urlencodedParser,(request,respond)=>{
 
-});
 
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
